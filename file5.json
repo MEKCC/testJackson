@@ -1,0 +1,20 @@
+[
+  {
+    "name": "max",
+    "age": 15,
+    "country": [
+      {
+        "countryName": "ukraine"
+      }
+    ]
+  },
+  {
+    "name": "nikita",
+    "age": 20,
+    "country": [
+      {
+        "countryName": "poland"
+      }
+    ]
+  }
+]
