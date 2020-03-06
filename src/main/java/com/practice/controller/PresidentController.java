@@ -31,6 +31,8 @@ public class PresidentController {
         String contents = new String(Files.readAllBytes(Paths.get("file5.json")));
         List<President> presidentList = Arrays.asList(mapper.readValue(contents, President[].class));
 
+        presidentList.forEach(president -> president.getCountry().forEach(country -> country.setPresident(president)));
+
         presidentRepo.saveAll(presidentList);
 
     }

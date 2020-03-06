@@ -26,7 +26,7 @@ public class President {
 
     @JsonIgnore
     @JsonProperty
-    @OneToMany(mappedBy = "president", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "president", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Country> country = new ArrayList<>();
 
 }

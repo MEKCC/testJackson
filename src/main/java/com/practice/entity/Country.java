@@ -15,14 +15,9 @@ public class Country {
     @JsonIgnore
     private Long id;
 
-
-//    ALWAYS RETURN NULL, WHY???
-//    ALWAYS RETURN NULL, WHY???
-//    ALWAYS RETURN NULL, WHY???
     @JoinColumn(name = "president_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private President president;
-
 
     @JsonProperty("countryName")
     private String countryName;
