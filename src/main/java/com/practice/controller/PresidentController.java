@@ -34,6 +34,7 @@ public class PresidentController {
         presidentList.forEach(president -> president.getCountry().forEach(country -> country.setPresident(president)));
 
         presidentRepo.saveAll(presidentList);
+      //  presidentList.forEach(x -> presidentRepo.save(x));
 
     }
 }

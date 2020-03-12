@@ -1,0 +1,20 @@
+[
+  {
+    "name": "igor",
+    "age": 99,
+    "country": [
+      {
+        "countryName": "moldova"
+      }
+    ]
+  },
+  {
+    "name": "ashot",
+    "age": 999,
+    "country": [
+      {
+        "countryName": "usa"
+      }
+    ]
+  }
+]
