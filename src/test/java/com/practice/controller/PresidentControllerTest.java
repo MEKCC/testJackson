@@ -2,27 +2,19 @@ package com.practice.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.practice.entity.President;
-import com.practice.repo.CountryRepo;
 import com.practice.repo.PresidentRepo;
+import com.practice.service.PresidentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Matchers;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 @ContextConfiguration(classes = {PresidentController.class, ObjectMapper.class})
@@ -36,11 +28,11 @@ class PresidentControllerTest {
     @MockBean
     private PresidentRepo presidentRepo;
 
-    @MockBean
-    private CountryRepo countryRepo;
-
     @Autowired
     private PresidentController presidentController;
+
+    @MockBean
+    private PresidentService presidentService;
 
     @BeforeEach
     void setUp() {
@@ -48,14 +40,11 @@ class PresidentControllerTest {
     }
 
     @Test
-    void saveToDB() throws IOException {
-        presidentController.saveToDB();
+    void addPresidentsTest() throws IOException {
+        presidentController.addPresidents();
 
+//        verify(presidentRepo, times(1)).saveAll(anyList());
 
-        verify(presidentRepo, times(1)).saveAll(any(List.class));
-        verify(presidentRepo, times(1)).saveAll(anyList());
-        verify(presidentRepo, times(1)).saveAll(Mockito.<President>anyList());
-        verify(presidentRepo, times(1)).saveAll(anyListOf(President.class));
-        verify(presidentRepo, times(1)).saveAll(any());
+        verify(presidentService, times(1)).addPresidents();
     }
 }
