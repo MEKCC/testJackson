@@ -3,9 +3,9 @@ package com.practice.controller;
 import com.practice.service.PresidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
 
 @RestController
 public class PresidentController {
@@ -14,7 +14,17 @@ public class PresidentController {
     private PresidentService presidentService;
 
     @GetMapping("/add")
-    public void addPresidents() throws IOException {
+    public void addPresidents() {
         presidentService.addPresidents();
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deletePresidents(@PathVariable Long id) {
+        presidentService.deletePresidents(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public void updatePresidents(@PathVariable Long id) {
+        presidentService.updatePresidents(id);
     }
 }

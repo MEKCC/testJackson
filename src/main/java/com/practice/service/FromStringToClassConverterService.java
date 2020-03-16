@@ -15,7 +15,7 @@ class FromStringToClassConverterService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public List<President> converter(String values) throws JsonProcessingException {
+    public List<President> mapper(String values) throws JsonProcessingException {
         return Arrays.asList(objectMapper.readValue(values, President[].class));
     }
 }

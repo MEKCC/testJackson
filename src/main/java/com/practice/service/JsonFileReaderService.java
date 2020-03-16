@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @Service
-class JsonFileReaderService {
+public class JsonFileReaderService {
 
     public String fromJsonToString(String file) throws IOException {
         return new String(Files.readAllBytes(Paths.get(file)));
