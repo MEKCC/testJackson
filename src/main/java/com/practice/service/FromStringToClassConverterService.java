@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-class FromStringToClassConverterService {
+public class FromStringToClassConverterService {
 
     @Autowired
     private ObjectMapper objectMapper;
