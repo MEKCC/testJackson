@@ -13,23 +13,30 @@ import com.practice.service.PresidentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static util.InitJsonData.getDataFromJson;
 import static util.InitJsonData.getListOfPresidentFromString;
 
+
 @SpringBootTest
+@AutoConfigureMockMvc
 @ContextConfiguration(classes = {
         PresidentService.class,
         ObjectMapper.class,
-        JsonFileReaderService.class,
         PresidentController.class})
 class PresidentServiceTest {
 
@@ -50,6 +57,9 @@ class PresidentServiceTest {
 
     @Autowired
     private PresidentService presidentService;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @MockBean
     private JsonFileReaderService jsonFileReaderService;
@@ -92,5 +102,17 @@ class PresidentServiceTest {
 
         verify(presidentRepo, times(1)).findById(anyLong());
         verify(presidentRepo, times(1)).deleteById(anyLong());
+    }
+
+    @Test
+    void whenUrlAddWorkCorrect() throws Exception {
+        this.mockMvc.perform(get("/add"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void checkAddMustReturnException() throws IOException {
+        when(jsonFileReaderService.fromJsonToString(any())).thenThrow(IOException.class);
+        assertThrows(ResponseStatusException.class, () -> presidentService.addPresidents());
     }
 }
