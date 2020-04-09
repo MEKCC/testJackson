@@ -3,7 +3,6 @@ package com.practice.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@ToString
 public class President {
 
     @Id
@@ -19,6 +17,7 @@ public class President {
     private Long id;
 
     @JsonProperty("name")
+    @Column(name = "new_name")
     private String name;
 
     @JsonProperty("age")

@@ -1,5 +1,6 @@
 package com.practice.controller;
 
+import com.practice.csvCreatorImpl.CSVPresidentDatasetServiceImpl;
 import com.practice.service.PresidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,9 @@ public class PresidentController {
 
     @Autowired
     private PresidentService presidentService;
+
+    @Autowired
+    private CSVPresidentDatasetServiceImpl csvPresidentDatasetServiceImpl;
 
     @GetMapping("/add")
     public void addPresidents() {
@@ -26,5 +30,10 @@ public class PresidentController {
     @PutMapping("/update/{id}")
     public void updatePresidents(@PathVariable Long id) {
         presidentService.updatePresidents(id);
+    }
+
+    @GetMapping("/csv")
+    public void writeDatasetIntoCSV() {
+        csvPresidentDatasetServiceImpl.createCSVDataset();
     }
 }

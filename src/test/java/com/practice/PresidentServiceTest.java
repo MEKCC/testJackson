@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.practice.controller.PresidentController;
+import com.practice.csvCreatorImpl.CSVPresidentDatasetServiceImpl;
 import com.practice.entity.President;
 import com.practice.repo.CountryRepo;
 import com.practice.repo.PresidentRepo;
@@ -51,6 +52,9 @@ class PresidentServiceTest {
 
     @MockBean
     private CountryRepo countryRepo;
+
+    @MockBean
+    private CSVPresidentDatasetServiceImpl csvPresidentDatasetService;
 
     @Autowired
     private PresidentController presidentController;
