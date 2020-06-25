@@ -17,6 +17,7 @@ public class Country {
 
     @JoinColumn(name = "president_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private President president;
 
     @JsonProperty("countryName")

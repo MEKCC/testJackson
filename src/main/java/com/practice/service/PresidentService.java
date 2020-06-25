@@ -72,4 +72,12 @@ public class PresidentService {
         changedList.forEach(president -> president.getCountry().forEach(country -> country.setPresident(president)));
         return changedList;
     }
+
+    public List<President> findListOfPresidentsWithQuery() {
+        return presidentRepo.findAllPresidentsWithQuery();
+    }
+
+    public President findOnePresidentWithQuery() {
+        return presidentRepo.findOnePresidentWithQuery();
+    }
 }
