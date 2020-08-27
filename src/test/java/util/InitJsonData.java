@@ -1,6 +1,5 @@
 package util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.practice.entity.President;
 
@@ -22,7 +21,7 @@ public class InitJsonData {
     public static List<President> getListOfPresidentFromString(){
         try {
             return mapper(getDataFromJson());
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return Collections.emptyList();
@@ -37,7 +36,7 @@ public class InitJsonData {
         return null;
     }
 
-    public static List<President> mapper(String values) throws JsonProcessingException {
+    public static List<President> mapper(String values) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return Arrays.asList(objectMapper.readValue(values, President[].class));
     }
